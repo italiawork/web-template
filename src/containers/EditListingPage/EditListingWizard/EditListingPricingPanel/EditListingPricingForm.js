@@ -121,7 +121,7 @@ export const EditListingPricingFormComponent = props => (
             disabled={submitDisabled}
             ready={submitReady}
           >
-            {saveActionMsg}
+            Pubblica annuncio
           </Button>
         </Form>
       );
