@@ -145,7 +145,7 @@ const SectionOfferListingsMaybe = props => {
                         <p className={css.offerListingBio}>{descriptionWithLinks}</p>
                         {!isExpanded && descriptionLength >= maxLength && (
                           <div className={css.expandButton} onClick={() => setIsExpanded(true)}>
-                            Contrai
+                            Espandi
                           </div>
                         )}
                       </div>

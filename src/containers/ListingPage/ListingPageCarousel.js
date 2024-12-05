@@ -463,14 +463,14 @@ export const ListingPageComponent = props => {
               </div>
             ) : null}
 
-            {project_type && project_type !== 'online' ? (
+            {false && (
               <SectionMapMaybe
                 geolocation={geolocation}
                 publicData={publicData}
                 listingId={currentListing.id}
                 mapsConfig={config.maps}
               />
-            ) : null}
+            )}
 
             <div className={css.marginContent}>
               <H4>

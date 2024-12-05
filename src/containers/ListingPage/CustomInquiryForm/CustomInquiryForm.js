@@ -207,7 +207,7 @@ const CustomInquiryFormComponent = props => {
                       if (offerPrice) setInquiryFormPage(2);
                     }}
                   >
-                    <FormattedMessage id="InquiryForm.submitButtonText" />
+                    <FormattedMessage id="CustomInquiryForm.offerButtonOnePlaceholder" />
                   </PrimaryButton>
                 </div>
               </div>
@@ -237,7 +237,7 @@ const CustomInquiryFormComponent = props => {
                     inProgress={submitInProgress}
                     disabled={submitDisabled}
                   >
-                    <FormattedMessage id="InquiryForm.submitButtonText" />
+                    <FormattedMessage id="CustomInquiryForm.offerButtonTwoPlaceholder" />
                   </PrimaryButton>
                 </div>
               </div>
