@@ -145,21 +145,21 @@ class RouteComponentRenderer extends Component {
     const restrictedPageWithCurrentUser = !canShow && hasCurrentUser;
     // Banned users are redirected to LandingPage
     const isBannedFromAuthPages = restrictedPageWithCurrentUser && isBanned(currentUser);
-    
-    console.log(currentUser);
 
     return canShow ? (
       (!isEmailVerified(currentUser) && route.auth && route.path !== '/signup') ? (
         <Redirect to="/signup" />
       ) : (
-        <LoadableComponentErrorBoundary>
-          <RouteComponent
-            params={match.params}
-            location={location}
-            staticContext={staticContext}
-            {...extraProps}
-          />
-        </LoadableComponentErrorBoundary>
+        (route.path === '/' ? <Redirect to={currentUser ? '/s' : '/login'} /> : (
+          <LoadableComponentErrorBoundary>
+            <RouteComponent
+              params={match.params}
+              location={location}
+              staticContext={staticContext}
+              {...extraProps}
+            />
+          </LoadableComponentErrorBoundary>
+        ))
       )
     ) : isBannedFromAuthPages ? (
       <NamedRedirect name="LandingPage" />
