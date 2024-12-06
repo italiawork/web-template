@@ -334,14 +334,15 @@ export const ListingPageComponent = props => {
     longWordClass: css.longWord,
   });
 
+  console.log(facebookImages);
+
   return (
     <Page
       title={schemaTitle}
       scrollingDisabled={scrollingDisabled}
       author={authorDisplayName}
       description={description}
-      // TODO: add italiawork-social-sharing
-      facebookImages={facebookImages}
+      // facebookImages={facebookImages}
       twitterImages={twitterImages}
       socialSharing={{
         title: intl.formatMessage({
@@ -354,6 +355,11 @@ export const ListingPageComponent = props => {
         }, {
           title,
         }),
+        images1200: [{
+          width: 1280,
+          height: 720,
+          url: 'https://cdn.prod.website-files.com/67388105e786c44d2fd25e83/6752e663a4801698954d151d_italiawork-social-sharing.jpg',
+        }],
       }}
       schema={{
         '@context': 'http://schema.org',
