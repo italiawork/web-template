@@ -450,6 +450,13 @@ export const handleCustomSubmit = parameters => values => {
   // Clear previous Stripe errors from store if there is any
   onInitializeCardPaymentData();
 
+  pushDataLayerEvent({
+    dataLayer: {
+      email: currentUser.attributes.email,
+    },
+    dataLayerName: 'Listing_Checkout',
+  });
+
   // Redirect to CheckoutPage
   history.push(
     createResourceLocatorString(
