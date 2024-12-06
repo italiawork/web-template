@@ -25,6 +25,7 @@ import {
 } from '../../../components';
 
 import css from './ProfileSettingsForm.module.css';
+import { getPublicProfileUrl, pushDataLayerEvent } from '../../../analytics/analytics';
 
 const ACCEPT_IMAGES = 'image/*';
 const UPLOAD_CHANGE_DELAY = 2000; // Show spinner so that browser has time to load img srcset
@@ -279,6 +280,14 @@ class ProfileSettingsFormComponent extends Component {
                       if (file != null) {
                         const tempId = `${file.name}_${Date.now()}`;
                         onImageUpload({ id: tempId, file });
+
+                        pushDataLayerEvent({
+                          dataLayer: {
+                            email: currentUser.attributes.email,
+                            publicProfileLink: getPublicProfileUrl(currentUser.id.uuid),
+                          },
+                          dataLayerEvent: 'User_ProfilePhotoUpload',
+                        });
                       }
                     };
 
