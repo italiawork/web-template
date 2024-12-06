@@ -145,11 +145,8 @@ class RouteComponentRenderer extends Component {
     const restrictedPageWithCurrentUser = !canShow && hasCurrentUser;
     // Banned users are redirected to LandingPage
     const isBannedFromAuthPages = restrictedPageWithCurrentUser && isBanned(currentUser);
-
-    console.log('isEmailNotVerified', !isEmailVerified(currentUser));
-    console.log(route);
-    console.log('route.auth', route.auth);
-    console.log('route.path is not signup', route.path !== '/signup');
+    
+    console.log(currentUser);
 
     return canShow ? (
       (!isEmailVerified(currentUser) && route.auth && route.path !== '/signup') ? (

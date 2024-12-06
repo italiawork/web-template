@@ -567,15 +567,12 @@ export const AuthenticationPageComponent = props => {
         footer={!showEmailVerification && <FooterContainer />}
       >
         <ResponsiveBackgroundImageContainer
-          className={css.root}
+          className={`${css.root} ${showEmailVerification ? css.whiteBg : ''}`}
           childrenWrapperClassName={css.contentContainer}
           as="section"
           image={config.branding.brandImage}
           sizes="100%"
           useOverlay={!showEmailVerification}
-          style={!!showEmailVerification && {
-            background: '#ffffff',
-          }}
         >
           {showEmailVerification ? (
             <EmailVerificationInfo
