@@ -144,6 +144,17 @@ export const ListingPageComponent = props => {
     offerListingItems,
   } = props;
 
+  useEffect(() => {
+    pushDataLayerEvent({
+      dataLayer: {
+        email: currentUser.attributes.email,
+        title: currentListing.attributes.title,
+        link: window.location.href,
+      },
+      dataLayerName: 'Listing_PageView',
+    });
+  }, []);
+
   const listingConfig = config.listing;
   const listingId = new UUID(rawParams.id);
   const isPendingApprovalVariant = rawParams.variant === LISTING_PAGE_PENDING_APPROVAL_VARIANT;
@@ -202,17 +213,6 @@ export const ListingPageComponent = props => {
     publicData = {},
     metadata = {},
   } = currentListing.attributes;
-
-  useEffect(() => {
-    pushDataLayerEvent({
-      dataLayer: {
-        email: currentUser.attributes.email,
-        title,
-        link: window.location.href,
-      },
-      dataLayerName: 'Listing_PageView',
-    });
-  }, []);
 
   const richTitle = (
     <span>
