@@ -563,8 +563,8 @@ export const AuthenticationPageComponent = props => {
     >
       <LayoutSingleColumn
         mainColumnClassName={css.layoutWrapperMain}
-        topbar={<TopbarContainer className={topbarClasses} />}
-        footer={<FooterContainer />}
+        topbar={!showEmailVerification && <TopbarContainer className={topbarClasses} />}
+        footer={!showEmailVerification && <FooterContainer />}
       >
         <ResponsiveBackgroundImageContainer
           className={css.root}
@@ -572,7 +572,10 @@ export const AuthenticationPageComponent = props => {
           as="section"
           image={config.branding.brandImage}
           sizes="100%"
-          useOverlay
+          useOverlay={!showEmailVerification}
+          style={!!showEmailVerification && {
+            background: '#ffffff',
+          }}
         >
           {showEmailVerification ? (
             <EmailVerificationInfo

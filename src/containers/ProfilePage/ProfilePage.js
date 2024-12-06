@@ -392,6 +392,8 @@ export const ProfilePageComponent = props => {
           id: 'ProfilePage.ogDescription',
         }),
       }}
+      // TODO: add italiawork-social-sharing
+      // facebookImages: [],
       schema={{
         '@context': 'http://schema.org',
         '@type': 'ProfilePage',

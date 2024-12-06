@@ -340,8 +340,21 @@ export const ListingPageComponent = props => {
       scrollingDisabled={scrollingDisabled}
       author={authorDisplayName}
       description={description}
+      // TODO: add italiawork-social-sharing
       facebookImages={facebookImages}
       twitterImages={twitterImages}
+      socialSharing={{
+        title: intl.formatMessage({
+          id: 'ListingPage.ogTitle',
+        }, {
+          title,
+        }),
+        description: intl.formatMessage({
+          id: 'ListingPage.ogDescription',
+        }, {
+          title,
+        }),
+      }}
       schema={{
         '@context': 'http://schema.org',
         '@type': 'Product',

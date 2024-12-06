@@ -16,6 +16,9 @@ import { NamedRedirect } from '../components';
 import NotFoundPage from '../containers/NotFoundPage/NotFoundPage';
 
 import LoadableComponentErrorBoundary from './LoadableComponentErrorBoundary/LoadableComponentErrorBoundary';
+import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
+
+const isEmailVerified = currentUser => currentUser?.attributes?.emailVerified;
 
 const isBanned = currentUser => {
   const isBrowser = typeof window !== 'undefined';
@@ -26,6 +29,7 @@ const isBanned = currentUser => {
 const canShowComponent = props => {
   const { isAuthenticated, currentUser, route } = props;
   const { auth } = route;
+
   return !auth || (isAuthenticated && !isBanned(currentUser));
 };
 
@@ -141,15 +145,25 @@ class RouteComponentRenderer extends Component {
     const restrictedPageWithCurrentUser = !canShow && hasCurrentUser;
     // Banned users are redirected to LandingPage
     const isBannedFromAuthPages = restrictedPageWithCurrentUser && isBanned(currentUser);
+
+    console.log('isEmailNotVerified', !isEmailVerified(currentUser));
+    console.log(route);
+    console.log('route.auth', route.auth);
+    console.log('route.path is not signup', route.path !== '/signup');
+
     return canShow ? (
-      <LoadableComponentErrorBoundary>
-        <RouteComponent
-          params={match.params}
-          location={location}
-          staticContext={staticContext}
-          {...extraProps}
-        />
-      </LoadableComponentErrorBoundary>
+      (!isEmailVerified(currentUser) && route.auth && route.path !== '/signup') ? (
+        <Redirect to="/signup" />
+      ) : (
+        <LoadableComponentErrorBoundary>
+          <RouteComponent
+            params={match.params}
+            location={location}
+            staticContext={staticContext}
+            {...extraProps}
+          />
+        </LoadableComponentErrorBoundary>
+      )
     ) : isBannedFromAuthPages ? (
       <NamedRedirect name="LandingPage" />
     ) : (
@@ -183,6 +197,7 @@ RouteComponentRenderer.propTypes = {
 const mapStateToProps = state => {
   const { isAuthenticated, logoutInProgress } = state.auth;
   const { currentUser } = state.user;
+
   return { isAuthenticated, logoutInProgress, currentUser };
 };
 const RouteComponentContainer = compose(connect(mapStateToProps))(RouteComponentRenderer);
