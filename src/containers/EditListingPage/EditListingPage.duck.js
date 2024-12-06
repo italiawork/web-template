@@ -24,7 +24,6 @@ import {
   fetchStripeAccount,
 } from '../../ducks/stripeConnectAccount.duck';
 import { fetchCurrentUser } from '../../ducks/user.duck';
-import { getPublicProfileUrl, pushDataLayerEvent } from '../../analytics/analytics';
 
 const { UUID } = sdkTypes;
 
