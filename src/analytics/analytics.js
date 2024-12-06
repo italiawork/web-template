@@ -22,6 +22,12 @@ export const createMiddleware = handlers => store => next => action => {
 
 export const pushDataLayerEvent = data => {
   console.log(data);
+  
+  TagManager.initialize({
+    gtmId: process.env.REACT_APP_GOOGLE_ANALYTICS_ID,
+    dataLayerName: data.dataLayerName,
+  });
+
   TagManager.dataLayer(data);
 };
 
