@@ -325,6 +325,8 @@ export const ListingPageComponent = props => {
     onInquiryWithoutPayment,
     onSubmitCallback,
     onCreateSellerListing,
+    currentUser,
+    title,
   });
 
   const displayDate = selectedDate ? moment(selectedDate).format('dddd, MMMM Do YYYY') : null;
@@ -333,8 +335,6 @@ export const ListingPageComponent = props => {
     longWordMinLength: MIN_LENGTH_FOR_LONG_WORDS,
     longWordClass: css.longWord,
   });
-
-  console.log(facebookImages);
 
   return (
     <Page
