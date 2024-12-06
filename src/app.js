@@ -9,6 +9,7 @@ import loadable from '@loadable/component';
 import difference from 'lodash/difference';
 import mapValues from 'lodash/mapValues';
 import moment from 'moment';
+import TagManager from 'react-gtm-module';
 
 // Configs and store setup
 import defaultConfig from './config/configDefault';
@@ -147,6 +148,11 @@ const Configurations = props => {
   const { appConfig, children } = props;
   const routeConfig = routeConfiguration(appConfig.layout, appConfig?.accessControl);
   const locale = isTestEnv ? 'en' : appConfig.localization.locale;
+  
+  TagManager.initialize({
+    gtmId: process.env.REACT_APP_GOOGLE_ANALYTICS_ID,
+    dataLayerName: 'PageDataLayer',
+  });
 
   return (
     <ConfigurationProvider value={appConfig}>
