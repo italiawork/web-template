@@ -22,6 +22,8 @@ const { authenticateFacebook, authenticateFacebookCallback } = require('./api/au
 const { authenticateGoogle, authenticateGoogleCallback } = require('./api/auth/google');
 const offerListingPage = require('./api/offer-listing-page');
 const ping = require('./api/ping');
+const users = require('./api/feed/users');
+const usersMeta = require('./api/feed/usersMeta');
 
 const router = express.Router();
 
@@ -84,5 +86,7 @@ router.get('/auth/google/callback', authenticateGoogleCallback);
 
 router.post('/offer-listing-page', offerListingPage);
 router.get('/ping', ping);
+router.get('/feed/users', users);
+router.get('/feed/users/meta', usersMeta);
 
 module.exports = router;
